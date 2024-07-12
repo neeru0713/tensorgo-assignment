@@ -1,7 +1,129 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import TextField from "../form/TextField";
+import Button from "../form/Button";
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/actions/authActions';
 export const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    organization: "",
+    role: "user",
+  });
+  const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+  };
+
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.username) newErrors.username = "username is required";
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    if (!formData.password) newErrors.password = "password is required";
+    else if (!validatePassword(formData.password)) {
+      newErrors.password =
+        "password must contain an uppercase, lowercase, number, special character with length of atleast 8 characters";
+    }
+
+    if (!formData.organization)
+      newErrors.organization = "organization is required";
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formErrors = validate();
+    if (Object.keys(formErrors).length === 0) {
+        dispatch(register(formData));
+    } else {
+      setErrors(formErrors);
+    }
+  };
+
   return (
-    <div>Register</div>
-  )
-}
+    <div className="register-page relative  h-screen bg-gray-50">
+      <h1 className="text-3xl font-bold  left-[600px] top-[100px] text-gray-600 absolute">
+        TensorGo
+      </h1>
+      <div className="absolute left-[600px] top-[200px] register-form border p-10 rounded-md flex flex-col gap-3 items-center shadow shadow-lg bg-white">
+        <h1 className="text-lg font-semibold">Register Form</h1>
+        <TextField
+          type="text"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          label="Username"
+          width="400"
+          error={errors.username}
+          required={true}
+        />
+        <TextField
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          label="Email"
+          width="400"
+          error={errors.email}
+          required={true}
+        />
+        <TextField
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          label="Password"
+          width="400"
+          error={errors.password}
+          required={true}
+        />
+
+        <TextField
+          type="text"
+          name="organization"
+          value={formData.organization}
+          onChange={handleChange}
+          label="Your Organization's Name"
+          width="400"
+          error={errors.organization}
+          required={true}
+        />
+        <div className="form-btn mt-5">
+          <Button
+            width="400"
+            name="Submit"
+            type="primary"
+            onClick={handleSubmit}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
