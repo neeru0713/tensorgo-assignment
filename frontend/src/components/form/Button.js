@@ -32,7 +32,7 @@ const Button = ({
 
   return (
     <button
-      className="relative button rounded-md px-3 py-2 text-md"
+      className="relative button rounded-md px-3 py-3 text-md"
       style={styles}
       onClick={onClick}
     >

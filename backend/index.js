@@ -6,7 +6,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const authRoutes = require("./routes/authRoutes")
-
+const httpStatus = require("http-status");
+const { errorHandler } = require("./middlewares/error");
+const ApiError = require("./utils/ApiError");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
@@ -48,6 +50,12 @@ app.get("/health-check", async (req, res) => {
 });
 
 app.use('/api/auth/', authRoutes);
+
+app.use((req, res, next) => {
+    next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
+});
+
+app.use(errorHandler);
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {

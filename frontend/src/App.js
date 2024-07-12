@@ -1,22 +1,25 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Register } from "./components/auth/Register";
+import { Login } from "./components/auth/Login";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 function App() {
-  const user = useSelector((state) => state.auth.user);
+  const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (user) {
-      console.log("User state : ", user); 
+    if (auth) {
+      console.log("auth state : ", auth); 
     }
-  }, [user]);
+  }, [auth]);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login/>} />
+        
       </Routes>
     </BrowserRouter>
   );
