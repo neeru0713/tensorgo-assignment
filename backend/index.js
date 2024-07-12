@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
+const authRoutes = require("./routes/authRoutes")
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -45,6 +46,8 @@ app.get("/health-check", async (req, res) => {
     res.status(500).json({ message: "service down", error: error.message });
   }
 });
+
+app.use('/api/auth/', authRoutes);
 
 const port = process.env.PORT || 3000; 
 app.listen(port, () => {

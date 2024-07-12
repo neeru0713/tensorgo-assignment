@@ -1,4 +1,4 @@
-import {REGISTER_SUCCESS} from '../types';
+import {REGISTER_SUCCESS, REGISTER_FAIL} from '../types';
 
 const initialState = {
   user: null,
@@ -16,6 +16,14 @@ const authReducer = (state = initialState, action) => {
         token: action.payload?.token,
         isAuthenticated: true,
         error: null,
+      };
+      case REGISTER_FAIL:
+      return {
+        ...state,
+        user: null,
+        token: null,
+        isAuthenticated: false,
+        error: action.payload,
       };
     default:
       return state;
