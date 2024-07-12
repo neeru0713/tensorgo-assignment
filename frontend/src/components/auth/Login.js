@@ -51,11 +51,11 @@ export const Login = () => {
   };
 
   return (
-    <div className="login-page-wrapper h-screen bg-gray-50 flex flex-col justify-center items-center">
+    <div className="login-page-wrapper h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col items-start login-page">
-        <h1 className="text-3xl font-bold text-gray-600 mb-10">TensorGo</h1>
+        <h1 className="text-3xl font-bold text-gray-600 mb-10">Welcome Back !</h1>
         <div className="login-form border p-10 rounded-md flex flex-col gap-3 items-center shadow shadow-lg bg-white mb-20">
-          <h1 className="text-xl font-semibold">Login Form</h1>
+          <h1 className="text-2xl font-semibold text-gray-700">Login</h1>
           <TextField
             type="text"
             name="username"

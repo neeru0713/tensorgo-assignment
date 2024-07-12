@@ -68,11 +68,11 @@ export const Register = () => {
   };
 
   return (
-    <div className="register-page-wrapper h-screen bg-gray-50 flex flex-col justify-center items-center">
+    <div className="register-page-wrapper h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col items-start register-page">
-        <h1 className="text-3xl font-bold text-gray-600 mb-10">TensorGo</h1>
+        <h1 className="text-3xl font-bold text-gray-600 mb-10">New User ?</h1>
         <div className="register-form border p-10 rounded-md flex flex-col gap-3 items-center shadow shadow-lg bg-white">
-          <h1 className="text-xl font-semibold">Register Form</h1>
+          <h1 className="text-xl font-semibold">Register</h1>
           <TextField
             type="text"
             name="username"
