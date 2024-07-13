@@ -3,6 +3,7 @@
 ## Introduction
 
 This repository contains the frontend and backend code for TensorGo Assignment. The frontend is built with React and Redux, and the backend uses Node.js with Express and MongoDB.
+link : https://tensorgo-assignment.vercel.app/ 
 
 ## Prerequisites
 
