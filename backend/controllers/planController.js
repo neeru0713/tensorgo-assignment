@@ -19,6 +19,17 @@ const getPlans = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).json(resObj);
 });
 
+const addPlanToUserController = async (req, res) => {
+  const { userId, planId } = req.body;
+
+  try {
+    const updatedUser = await addPlanToUser(userId, planId);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(error.statusCode || 500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createPlan,
   getPlans

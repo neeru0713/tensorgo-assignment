@@ -3,10 +3,17 @@ import { PLAN_SUCCESS, PLAN_FAIL } from "../types";
 import { API_URL } from "../../config/config";
 import { showNotification } from './notificationActions';
 import {showSpinner, hideSpinner} from './spinnerActions'
-export const createPlan = (planData) => async (dispatch) => {
+export const createPlan = (planData) => async (dispatch, getState) => {
   try {
     dispatch(showSpinner())
-    const res = await axios.post(API_URL + "/api/plan/", planData);
+    const state  = getState();
+    const token = state.auth.token; 
+    const res = await axios.post(API_URL + "/api/plan/", planData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     dispatch(hideSpinner())
     dispatch({ type: PLAN_SUCCESS, payload: res.data });
     dispatch(showNotification({type: 'success', message: res.data?.plan?.planName + ' Plan created successfully', sticky: true}))

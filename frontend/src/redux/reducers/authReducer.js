@@ -1,9 +1,9 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL } from "../types";
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "../types";
 
 const initialState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+  user: JSON.parse(localStorage.getItem('user')) || null,
+  token: localStorage.getItem('token') || null,
+  isAuthenticated: !!localStorage.getItem('token'),
   error: null,
 };
 
@@ -41,6 +41,13 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: false,
         error: action.payload,
       };
+      case LOGOUT:
+        return {
+          ...state,
+          user: null,
+          token: null,
+          isAuthenticated: false,
+        };
     default:
       return state;
   }

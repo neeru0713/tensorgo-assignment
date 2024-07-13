@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextField from "../form/TextField";
 import Button from "../form/Button";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../redux/actions/authActions";
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ export const Register = () => {
   });
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,9 +64,11 @@ export const Register = () => {
     const formErrors = validate();
     if (Object.keys(formErrors).length === 0) {
       dispatch(register(formData));
+      navigate('/')
     } else {
       setErrors(formErrors);
     }
+    
   };
 
   return (

@@ -23,7 +23,7 @@ function App() {
         <SideNav />
         <div className="main-content w-[88%] bg-[#f7f8ff] min-w-[600px]">
           <Routes>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-plan" element={<CreatePlan />} />

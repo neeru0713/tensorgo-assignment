@@ -28,7 +28,6 @@ export const removeCheckoutItem = (data, index) => async (dispatch) => {
 
 export const payNow = (data) => async (dispatch) => {
   try {
-    // debugger;
     dispatch(showSpinner());
     const res = await axios.post(API_URL + "/api/payment/checkout", {
       data,

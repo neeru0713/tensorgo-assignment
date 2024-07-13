@@ -2,6 +2,7 @@ const User = require("../models/User.js");
 const bcrypt = require("bcryptjs");
 const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
+const Plan = require("../models/Plan");
 
 var SALT_WORK_FACTOR = 10;
 
@@ -9,7 +10,7 @@ async function createUser(userBody) {
   try {
     let userExists = await User.findOne({ email: userBody.email });
     if (userExists) {
-      throw new Error(httpStatus.CONFLICT, "Email already taken");
+      throw new ApiError(httpStatus.CONFLICT, "Email already taken");
     } else {
       const newUser = new User(userBody);
       const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
@@ -34,9 +35,8 @@ async function loginUser(username, password) {
     if (!user) {
       throw new ApiError(httpStatus.BAD_REQUEST, "User doesn't exist");
     }
-
     const isMatchPassword = await matchPassword(password, user.password);
-
+    
     if (!isMatchPassword) {
       throw new ApiError(httpStatus.BAD_REQUEST, "Password doesn't match");
     } else {

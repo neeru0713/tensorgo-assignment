@@ -3,7 +3,6 @@ const paymentService = require("../services/paymentService");
 const httpStatus = require("http-status");
 
 const checkout = catchAsync(async (req, res) => {
-console.log("inside checkout controller")
   const session = await paymentService.checkout(req.body);
   if(session){
     res.status(httpStatus.OK).json({ url: session.url });

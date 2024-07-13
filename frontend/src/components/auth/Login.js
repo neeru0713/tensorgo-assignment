@@ -3,7 +3,9 @@ import TextField from "../form/TextField";
 import Button from "../form/Button";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions/authActions";
+import { useNavigate } from "react-router-dom";
 export const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -45,6 +47,7 @@ export const Login = () => {
     const formErrors = validate();
     if (Object.keys(formErrors).length === 0) {
       dispatch(login(formData));
+      navigate('/')
     } else {
       setErrors(formErrors);
     }
