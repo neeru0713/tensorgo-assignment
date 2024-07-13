@@ -26,12 +26,21 @@ export const removeCheckoutItem = (data, index) => async (dispatch) => {
   dispatch({ type: REMOVE_CHECKOUT_ITEM, payload: { data, index } });
 };
 
-export const payNow = (data) => async (dispatch) => {
+export const payNow = (data) => async (dispatch, getState) => {
   try {
-    dispatch(showSpinner('Redirecting to payment link'));
-    const res = await axios.post(API_URL + "/api/payment/checkout", {
-      data,
-    });
+    dispatch(showSpinner("Redirecting to payment link"));
+    const token = getState().auth.token;
+    const res = await axios.post(
+      API_URL + "/api/payment/checkout",
+      {
+        data,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     dispatch(hideSpinner());
     if (res?.data?.url) {
       window.location.href = res.data.url;

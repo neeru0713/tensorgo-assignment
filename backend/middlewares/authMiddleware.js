@@ -5,9 +5,7 @@ const httpStatus = require("http-status");
 
 const authMiddleware = async (req, res, next) => {
   try {
-    console.log("process.env.JWT_SECRET ", process.env.JWT_SECRET)
     const token = req.headers.authorization?.split(" ")[1]; 
-    console.log("Token : ", token)
     if (!token) {
       throw new ApiError(httpStatus.UNAUTHORIZED, "No token provided");
     }

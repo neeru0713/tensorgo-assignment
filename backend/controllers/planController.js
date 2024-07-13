@@ -19,18 +19,18 @@ const getPlans = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).json(resObj);
 });
 
-const addPlanToUserController = async (req, res) => {
-  const { userId, planId } = req.body;
+const getOrderHistoryOfUser = async (req, res) => {
+    const userId = req.user;
+    const plans = await planService.getOrderHistoryOfUser(userId);
+    let resObj = {
+      plans: plans.length > 0 ? plans : []
+    };
+    res.status(httpStatus.OK).json(resObj);
+}
 
-  try {
-    const updatedUser = await addPlanToUser(userId, planId);
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    res.status(error.statusCode || 500).json({ error: error.message });
-  }
-};
 
 module.exports = {
   createPlan,
-  getPlans
+  getPlans,
+  getOrderHistoryOfUser
 };
