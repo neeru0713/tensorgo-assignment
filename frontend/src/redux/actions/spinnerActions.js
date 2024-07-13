@@ -1,7 +1,7 @@
 import { SHOW_SPINNER, HIDE_SPINNER } from "../types";
 
-export const showSpinner = () => async (dispatch) => {
-  dispatch({ type: SHOW_SPINNER, payload: {} });
+export const showSpinner = (title) => async (dispatch) => {
+  dispatch({ type: SHOW_SPINNER, payload: {title} });
 };
 
 export const hideSpinner = () => async (dispatch) => {

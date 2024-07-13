@@ -5,7 +5,7 @@ import { showNotification } from './notificationActions';
 import {showSpinner, hideSpinner} from './spinnerActions'
 export const createPlan = (planData) => async (dispatch, getState) => {
   try {
-    dispatch(showSpinner())
+    dispatch(showSpinner('Creating new plan'))
     const state  = getState();
     const token = state.auth.token; 
     const res = await axios.post(API_URL + "/api/plan/", planData, {
@@ -31,7 +31,7 @@ export const createPlan = (planData) => async (dispatch, getState) => {
 
 export const getPlans = () => async (dispatch) => {
   try{
-    dispatch(showSpinner())
+    dispatch(showSpinner('Fetching plans'))
     const res = await axios.get(API_URL + "/api/plan/");
     dispatch(hideSpinner())
     dispatch({ type: PLAN_SUCCESS, payload: res.data });

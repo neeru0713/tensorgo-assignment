@@ -14,7 +14,7 @@ const Payment = () => {
     const sessionId = query.get("session_id");
 
     if (sessionId) {
-        dispatch(showSpinner())
+        dispatch(showSpinner('Verifying Payment Details'))
       axios.post(API_URL+"/api/payment/verify", { sessionId })
         .then(response => {
             dispatch(hideSpinner())
