@@ -12,6 +12,7 @@ export const Checkout = () => {
     checkoutLength > 0 && (
       <div className="checkout-wrapper p-10 bg-white rounded-lg fixed top-[12%] shadow shadow-lg shadow-gray-200">
         <h1 className="text-orange-500 text-3xl font-bold mb-4">Checkout</h1>
+        <hr className="pb-3"></hr>
         <div className="checkout-list max-h-[30vh] overflow-scroll">
           {checkout?.map((item, index) => (
             <div className="flex py-2 items-center ">
@@ -37,7 +38,7 @@ export const Checkout = () => {
         </div>
         <button 
         onClick={() => {dispatch(payNow(checkout))}}
-        className="w-full bg-orange-500 rounded-lg p-2 text-white font-bold shadow">
+        className="w-full bg-orange-500 rounded-lg p-2 text-white font-bold shadow hover:bg-orange-600">
           Pay now
         </button>
       </div>

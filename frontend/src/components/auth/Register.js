@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TextField from "../form/TextField";
 import Button from "../form/Button";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { register } from "../../redux/actions/authActions";
 export const Register = () => {
   const [formData, setFormData] = useState({
@@ -118,6 +118,7 @@ export const Register = () => {
             error={errors.organization}
             required={true}
           />
+           <p> Already a user ? <Link to='/login' className='text-blue-500'>Login</Link> </p>
           <div className="form-btn mt-5">
             <Button
               width="400"

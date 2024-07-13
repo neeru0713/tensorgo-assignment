@@ -1,13 +1,20 @@
 import React from "react";
 import { RiFileList3Fill } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCartItem } from "../../redux/actions/cartActions";
 import { showNotification } from "../../redux/actions/notificationActions";
+import { useNavigate } from "react-router-dom";
 export const PlanCard = ({ plan }) => { 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth)
   const handleAddToCart = () => {
-    dispatch(showNotification({type: "info", message: "Plan added to cart", sticky: false}))
-    dispatch(addCartItem(plan))
+    if(auth?.isAuthenticated) {
+      dispatch(showNotification({type: "info", message: "Plan added to cart", sticky: false}))
+      dispatch(addCartItem(plan))
+    } else {
+      navigate('/login')
+    }
   } 
   return (
     <div className="plan-card-wrapper flex bg-orange-200 rounded-xl shadow shadow-lg min-w-[200px]">
@@ -24,7 +31,7 @@ export const PlanCard = ({ plan }) => {
         <div className="text-sm">Upto {plan.userLimit} user(s) can use our services from your organizaiton</div>
         <button 
         onClick={handleAddToCart}
-        className="text-white font-semibold p-2 border border-orange-600 bg-orange-600 rounded">Add to Cart</button>
+        className="text-white font-semibold p-2 border border-orange-600 bg-orange-600 rounded shadow shadow-md shadow-gray-600 hover:bg-orange-500">Add to Cart</button>
       </div>
     </div>
   );

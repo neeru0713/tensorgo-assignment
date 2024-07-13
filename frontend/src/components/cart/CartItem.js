@@ -17,7 +17,7 @@ export const CartItem = ({ data, index }) => {
       </div>
       <button 
       onClick={() => {dispatch(addCheckoutItem(data))}}
-      className="bg-white p-2 text-bold border rounded-lg text-black font-bold hover:bg-orange-700 hover:text-white shadow shadow-lg">
+      className="bg-white p-2 text-bold border rounded-lg text-black font-bold hover:bg-orange-600 hover:text-white shadow shadow-lg">
         Buy now
       </button>
       <button
