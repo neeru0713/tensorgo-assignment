@@ -24,6 +24,11 @@ export const SideNav = () => {
             <li>
               <Link to="/manage-users">Manage Users</Link>
             </li>
+
+            <li>
+              <Link to="/create-plan">Create Plan</Link>
+            </li>
+
           </ul>
         </header>
         <footer>

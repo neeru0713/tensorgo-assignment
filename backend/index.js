@@ -6,6 +6,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const authRoutes = require("./routes/authRoutes")
+const planRoutes = require("./routes/planRoutes")
 const httpStatus = require("http-status");
 const { errorHandler } = require("./middlewares/error");
 const ApiError = require("./utils/ApiError");
@@ -50,6 +51,7 @@ app.get("/health-check", async (req, res) => {
 });
 
 app.use('/api/auth/', authRoutes);
+app.use('/api/plan/', planRoutes);
 
 app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, "Not found"));
