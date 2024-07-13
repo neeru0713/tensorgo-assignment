@@ -44,7 +44,6 @@ export const CreatePlan = () => {
     const formErrors = validate();
     if (Object.keys(formErrors).length === 0) {
       dispatch(createPlan(formData));
-      dispatch(showNotification())
     } else {
       setErrors(formErrors);
     }

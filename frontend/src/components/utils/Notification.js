@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closeNotification } from "../../redux/actions/notificationActions";
 import { IoCloseSharp } from "react-icons/io5";
@@ -7,6 +7,17 @@ export const Notification = () => {
   const dispatch = useDispatch();
   const notification = useSelector((state) => state.notification);
   let styles = {};
+
+  useEffect(() => {
+    if (notification.visible && !notification.sticky) {
+      const timer = setTimeout(() => {
+        dispatch(closeNotification());
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification, dispatch]);
+
+
   if (notification.type === "success") {
     styles = {
       background: "#01bd84",

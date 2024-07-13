@@ -8,6 +8,7 @@ import { Home } from "./components/home/Home";
 import { CreatePlan } from "./components/plans/CreatePlan";
 import { Notification } from "./components/utils/Notification";
 import { Spinner } from "./components/utils/Spinner";
+import { Cart } from "./components/cart/Cart";
 import store from "./redux/store";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-plan" element={<CreatePlan />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
       </div>

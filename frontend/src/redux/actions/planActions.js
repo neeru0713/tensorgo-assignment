@@ -9,7 +9,7 @@ export const createPlan = (planData) => async (dispatch) => {
     const res = await axios.post(API_URL + "/api/plan/", planData);
     dispatch(hideSpinner())
     dispatch({ type: PLAN_SUCCESS, payload: res.data });
-    dispatch(showNotification({type: 'success', message: res.data?.plan?.planName + ' Plan created successfully'}))
+    dispatch(showNotification({type: 'success', message: res.data?.plan?.planName + ' Plan created successfully', sticky: true}))
   } catch (error) {
     console.error(error);
     dispatch(hideSpinner())
@@ -17,7 +17,7 @@ export const createPlan = (planData) => async (dispatch) => {
       type: PLAN_FAIL,
       payload: error.response ? error.response.data : "An Error occured",
     });
-    dispatch(showNotification({type: 'error', message: 'Plan creation Failed : ' + error.response.data.message}))
+    dispatch(showNotification({type: 'error', message: 'Plan creation Failed : ' + error.response.data.message,  sticky: true}))
   }
 };
 

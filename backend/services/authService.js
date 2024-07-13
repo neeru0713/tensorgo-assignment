@@ -24,7 +24,6 @@ async function createUser(userBody) {
 }
 
 async function matchPassword(clientPassword, storedPassword) {
-    console.log(clientPassword,storedPassword)
   const isMatchPassword = await bcrypt.compare(clientPassword, storedPassword);
   return isMatchPassword;
 }

@@ -5,10 +5,6 @@ import { useSelector } from 'react-redux'
 export const PlanList = () => {
   const plans = useSelector((state) => state.plan.plans);
 
-useEffect(()=>{
-console.log("********", plans)
-}, [plans])
-
   return (
     <div className='plan-list grid grid-cols-4 gap-5'>
        {plans?.map((plan, index) => (
