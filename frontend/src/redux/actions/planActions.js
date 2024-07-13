@@ -21,3 +21,18 @@ export const createPlan = (planData) => async (dispatch) => {
   }
 };
 
+
+export const getPlans = () => async (dispatch) => {
+  try{
+    dispatch(showSpinner())
+    const res = await axios.get(API_URL + "/api/plan/");
+    dispatch(hideSpinner())
+    dispatch({ type: PLAN_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch(hideSpinner())
+    dispatch({
+      type: PLAN_FAIL,
+      payload: error.response ? error.response.data : "An Error occured",
+    });
+  }
+}

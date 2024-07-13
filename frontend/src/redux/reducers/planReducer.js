@@ -1,16 +1,21 @@
 import { PLAN_SUCCESS, PLAN_FAIL } from "../types";
 const initialState = {
-  planName: "",
-  description: "",
-  price: "",
-  userLimit: "",
+  plans: [],
+  createdPlan: {
+    planName: "",
+    description: "",
+    price: "",
+    userLimit: "",
+  }
+ 
 };
 
 const planReducer = (state = initialState, action) => {
   switch (action.type) {
     case PLAN_SUCCESS:
       return {
-        ...action.payload?.plan,
+        plans: action.payload?.plans ? [...action.payload?.plans] : [],
+        createdPlan: action.payload?.plan ? action.payload?.plan : state.createdPlan,
       };
     case PLAN_FAIL:
       return state;

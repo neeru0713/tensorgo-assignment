@@ -1,22 +1,17 @@
-import React, { useState , useEffect} from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPlan } from "../../redux/actions/planActions.js";
-import { useSelector } from "react-redux";
 import TextField from "../form/TextField.js";
 import Button from "../form/Button.js";
 import { showNotification } from "../../redux/actions/notificationActions.js";
 export const CreatePlan = () => {
-  const plan = useSelector((state) => state.plan);
+  
   const [formData, setFormData] = useState({
     planName: "",
     description: "",
     price: "",
     userLimit: "",
   });
-
-  useEffect(() => {
-    console.log("Plan change : ", plan)
-  }, [plan])
 
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});

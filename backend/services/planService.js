@@ -12,6 +12,16 @@ async function createPlan(planBody) {
   }
 }
 
+async function getPlans() {
+  try {
+    const plans = Plan.find({});
+    return plans;
+  } catch (error) {
+    throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
 module.exports = {
   createPlan,
+  getPlans,
 };

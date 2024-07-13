@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { PlanCard } from './PlanCard'
+import { useSelector } from 'react-redux'
 
-export const PlanList = ({plans}) => {
+export const PlanList = () => {
+  const plans = useSelector((state) => state.plan.plans);
+
+useEffect(()=>{
+console.log("********", plans)
+}, [plans])
+
   return (
-    <div className='plan-list flex flex-col gap-10'>
-       {plans.map((plan, index) => (
+    <div className='plan-list grid grid-cols-4 gap-5'>
+       {plans?.map((plan, index) => (
             <PlanCard plan={plan}/>
        ))}
     </div>

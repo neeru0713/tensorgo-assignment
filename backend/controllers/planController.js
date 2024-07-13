@@ -11,6 +11,15 @@ const createPlan = catchAsync(async (req, res) => {
   res.status(httpStatus.CREATED).json(resObj);
 });
 
+const getPlans = catchAsync(async (req, res) => {
+  let plans = await planService.getPlans();
+  let resObj = {
+    plans
+  };
+  res.status(httpStatus.OK).json(resObj);
+});
+
 module.exports = {
   createPlan,
+  getPlans
 };
