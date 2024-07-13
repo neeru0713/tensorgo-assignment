@@ -10,6 +10,8 @@ import { Notification } from "./components/utils/Notification";
 import { Spinner } from "./components/utils/Spinner";
 import { Cart } from "./components/cart/Cart";
 import store from "./redux/store";
+import Payment from "./components/cart/Payment";
+import {OrderHistory} from "./components/plans/OrderHistory";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/create-plan" element={<CreatePlan />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/success" element={<Payment/>} />
+            <Route path="/order-history" element={<OrderHistory/>} />
           </Routes>
         </div>
       </div>

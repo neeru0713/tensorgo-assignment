@@ -3,6 +3,7 @@ import {
   REMOVE_CART_ITEM,
   ADD_CHECKOUT_ITEM,
   REMOVE_CHECKOUT_ITEM,
+  PAY_NOW
 } from "../types";
 
 const initialState = {
@@ -63,6 +64,10 @@ const cartReducer = (state = initialState, action) => {
         checkout: removeCheckoutItem(state, action.payload.index),
         checkoutLength: state.checkoutLength - 1,
         totalAmount: calculateTotalAmount(state, action.payload.data, "remove"),
+      };
+      case PAY_NOW:
+      return {
+        ...state
       };
     default:
       return state;

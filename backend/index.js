@@ -5,19 +5,22 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
-const authRoutes = require("./routes/authRoutes")
-const planRoutes = require("./routes/planRoutes")
-const httpStatus = require("http-status");
-const { errorHandler } = require("./middlewares/error");
-const ApiError = require("./utils/ApiError");
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.json());
-
 // Load environment variables
 const envFile =
   process.env.NODE_ENV === "production" ? ".env.production" : ".env";
 dotenv.config({ path: path.resolve(__dirname, '..', envFile) });
+
+const authRoutes = require("./routes/authRoutes")
+const planRoutes = require("./routes/planRoutes")
+const paymentRoutes = require("./routes/paymentRoutes")
+const httpStatus = require("http-status");
+const { errorHandler } = require("./middlewares/error");
+
+const ApiError = require("./utils/ApiError");
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.json());
 
 const mongoUrl = process.env.MONGODB_URL;
 
@@ -52,6 +55,7 @@ app.get("/health-check", async (req, res) => {
 
 app.use('/api/auth/', authRoutes);
 app.use('/api/plan/', planRoutes);
+app.use('/api/payment/', paymentRoutes);
 
 app.use((req, res, next) => {
     next(new ApiError(httpStatus.NOT_FOUND, "Not found"));

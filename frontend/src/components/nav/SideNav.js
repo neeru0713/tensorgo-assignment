@@ -34,6 +34,9 @@ export const SideNav = () => {
               <Link to="/create-plan">Create Plan</Link>
             </li>
 
+            <li>
+              <Link to="/history">Order History</Link>
+            </li>
             <li className="text-orange-400 flex items-center gap-3 my-1 relative">
               <Link to="/cart" className="font-semibold">Your Cart</Link>
               <BsCart3 className="text-white h-5 w-5" />

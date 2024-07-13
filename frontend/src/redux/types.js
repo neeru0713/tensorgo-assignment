@@ -17,3 +17,5 @@ export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 
 export const ADD_CHECKOUT_ITEM = 'ADD_CHECKOUT_ITEM';
 export const REMOVE_CHECKOUT_ITEM = 'REMOVE_CHECKOUT_ITEM';
+
+export const PAY_NOW = 'PAY_NOW';
